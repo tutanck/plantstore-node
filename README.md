@@ -9,19 +9,31 @@ The Plant Store API Node.js library provides access to the Plant Store API from 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/typescript-example-using-sdk-built-with-fern-dnjt7d?file=app.ts&view=editor)
 
 ```typescript
-import { PlantstoreApiClient } from '@fern-api/plantstore';
-import { Environment } from '@fern-api/plantstore/types/environments';
+import {
+  PlantStoreApi,
+  PlantStoreApiClient,
+  PlantStoreApiEnvironment,
+} from '@fern-api/plantstore';
 
-const client = new PlantstoreApiClient({
-  environment: Environment.Production,
-  token: 'MY-TOKEN',
-});
+void main();
 
-const response = await client.plant.find(
-  'ef19fe7b-c4c9-4631-81d7-a83aba610a7d'
-);
+async function main() {
+  const client = new PlantStoreApiClient({
+    environment: PlantStoreApiEnvironment.Production,
+    token: 'MY-TOKEN',
+  });
 
-console.log('Received response from Plant Store!', response);
+  const response = await client.plant.find(
+    'ef19fe7b-c4c9-4631-81d7-a83aba610a7d'
+  );
+
+  if (response.ok) {
+    const plant: PlantStoreApi.Plant = response.body;
+    console.log('Received plant!', plant);
+  } else {
+    console.log('Received failed response from Plant Store!', response.error);
+  }
+}
 ```
 
 ## Beta status
