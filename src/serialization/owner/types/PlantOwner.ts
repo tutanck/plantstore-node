@@ -3,23 +3,23 @@
  */
 
 import * as serializers from "../..";
-import { PlantstoreApi } from "@fern-api/plantstore";
+import { PlantStoreApi } from "@fern-api/plantstore";
 import * as core from "../../../core";
 
-export const PlantOwner: core.schemas.Schema<serializers.PlantOwner.Raw, PlantstoreApi.PlantOwner> = core.schemas
+export const PlantOwner: core.schemas.Schema<serializers.PlantOwner.Raw, PlantStoreApi.PlantOwner> = core.schemas
   .union("type", {
     customer: core.schemas.lazyObject(async () => (await import("../..")).StoreCustomer),
     employee: core.schemas.lazyObject(async () => (await import("../..")).StoreEmployee),
   })
-  .transform<PlantstoreApi.PlantOwner>({
+  .transform<PlantStoreApi.PlantOwner>({
     parse: (value) => {
       switch (value.type) {
         case "customer":
-          return PlantstoreApi.PlantOwner.customer(value);
+          return PlantStoreApi.PlantOwner.customer(value);
         case "employee":
-          return PlantstoreApi.PlantOwner.employee(value);
+          return PlantStoreApi.PlantOwner.employee(value);
         default:
-          return PlantstoreApi.PlantOwner._unknown(value);
+          return PlantStoreApi.PlantOwner._unknown(value);
       }
     },
     json: (value) => value as any,

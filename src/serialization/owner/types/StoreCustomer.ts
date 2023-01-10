@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../..";
-import { PlantstoreApi } from "@fern-api/plantstore";
+import { PlantStoreApi } from "@fern-api/plantstore";
 import * as core from "../../../core";
 
-export const StoreCustomer: core.schemas.ObjectSchema<serializers.StoreCustomer.Raw, PlantstoreApi.StoreCustomer> =
+export const StoreCustomer: core.schemas.ObjectSchema<serializers.StoreCustomer.Raw, PlantStoreApi.StoreCustomer> =
   core.schemas.object({
     name: core.schemas.string(),
     age: core.schemas.number().optional(),

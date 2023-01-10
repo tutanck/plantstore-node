@@ -7,15 +7,15 @@ import * as core from "./core";
 import { Client as OwnerClient } from "./resources/owner/client/Client";
 import { Client as PlantClient } from "./resources/plant/client/Client";
 
-export declare namespace PlantstoreApiClient {
+export declare namespace PlantStoreApiClient {
   interface Options {
-    environment?: environments.Environment | string;
+    environment?: environments.PlantStoreApiEnvironment | string;
     token?: core.Supplier<core.BearerToken>;
   }
 }
 
-export class PlantstoreApiClient {
-  constructor(private readonly options: PlantstoreApiClient.Options) {}
+export class PlantStoreApiClient {
+  constructor(private readonly options: PlantStoreApiClient.Options) {}
 
   #owner: OwnerClient | undefined;
 

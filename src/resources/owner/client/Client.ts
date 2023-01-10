@@ -4,13 +4,13 @@
 
 import * as environments from "../../../environments";
 import * as core from "../../../core";
-import { PlantstoreApi } from "@fern-api/plantstore";
+import { PlantStoreApi } from "@fern-api/plantstore";
 import urlJoin from "url-join";
 import * as serializers from "../../../serialization";
 
 export declare namespace Client {
   interface Options {
-    environment?: environments.Environment | string;
+    environment?: environments.PlantStoreApiEnvironment | string;
     token?: core.Supplier<core.BearerToken>;
   }
 }
@@ -18,9 +18,9 @@ export declare namespace Client {
 export class Client {
   constructor(private readonly options: Client.Options) {}
 
-  public async add(request: PlantstoreApi.AddOwnerRequest): Promise<PlantstoreApi.owner.add.Response> {
+  public async add(request: PlantStoreApi.AddOwnerRequest): Promise<PlantStoreApi.owner.add.Response> {
     const _response = await core.fetcher({
-      url: urlJoin(this.options.environment ?? environments.Environment.Production, "/owner/"),
+      url: urlJoin(this.options.environment ?? environments.PlantStoreApiEnvironment.Production, "/owner/"),
       method: "POST",
       headers: {
         Authorization: core.BearerToken.toAuthorizationHeader(await core.Supplier.get(this.options.token)),
@@ -43,20 +43,20 @@ export class Client {
         case 400:
           return {
             ok: false,
-            error: PlantstoreApi.owner.add.Error.ownerNotFoundError(),
+            error: PlantStoreApi.owner.add.Error.ownerNotFoundError(),
           };
       }
     }
 
     return {
       ok: false,
-      error: PlantstoreApi.owner.add.Error._unknown(_response.error),
+      error: PlantStoreApi.owner.add.Error._unknown(_response.error),
     };
   }
 
-  public async delete(ownerId: PlantstoreApi.OwnerId): Promise<PlantstoreApi.owner.delete.Response> {
+  public async delete(ownerId: PlantStoreApi.OwnerId): Promise<PlantStoreApi.owner.delete.Response> {
     const _response = await core.fetcher({
-      url: urlJoin(this.options.environment ?? environments.Environment.Production, `/owner/${ownerId}`),
+      url: urlJoin(this.options.environment ?? environments.PlantStoreApiEnvironment.Production, `/owner/${ownerId}`),
       method: "POST",
       headers: {
         Authorization: core.BearerToken.toAuthorizationHeader(await core.Supplier.get(this.options.token)),
@@ -71,7 +71,7 @@ export class Client {
 
     return {
       ok: false,
-      error: PlantstoreApi.owner.delete.Error._unknown(_response.error),
+      error: PlantStoreApi.owner.delete.Error._unknown(_response.error),
     };
   }
 }

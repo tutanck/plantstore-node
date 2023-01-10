@@ -1,2 +1,3 @@
-export * as PlantstoreApi from "./resources";
-export { PlantstoreApiClient } from "./Client";
+export * as PlantStoreApi from "./resources";
+export { PlantStoreApiClient } from "./Client";
+export { PlantStoreApiEnvironment } from "./environments";

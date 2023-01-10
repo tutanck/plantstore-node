@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../..";
-import { PlantstoreApi } from "@fern-api/plantstore";
+import { PlantStoreApi } from "@fern-api/plantstore";
 import * as core from "../../../core";
 
-export const PlantStatus: core.schemas.Schema<serializers.PlantStatus.Raw, PlantstoreApi.PlantStatus> =
+export const PlantStatus: core.schemas.Schema<serializers.PlantStatus.Raw, PlantStoreApi.PlantStatus> =
   core.schemas.enum_(["available", "pending", "sold"]);
 
 export declare namespace PlantStatus {

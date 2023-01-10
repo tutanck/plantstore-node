@@ -4,13 +4,13 @@
 
 import * as environments from "../../../environments";
 import * as core from "../../../core";
-import { PlantstoreApi } from "@fern-api/plantstore";
+import { PlantStoreApi } from "@fern-api/plantstore";
 import urlJoin from "url-join";
 import * as serializers from "../../../serialization";
 
 export declare namespace Client {
   interface Options {
-    environment?: environments.Environment | string;
+    environment?: environments.PlantStoreApiEnvironment | string;
     token?: core.Supplier<core.BearerToken>;
   }
 }
@@ -18,9 +18,9 @@ export declare namespace Client {
 export class Client {
   constructor(private readonly options: Client.Options) {}
 
-  public async add(request: PlantstoreApi.AddPlantRequest): Promise<PlantstoreApi.plant.add.Response> {
+  public async add(request: PlantStoreApi.AddPlantRequest): Promise<PlantStoreApi.plant.add.Response> {
     const _response = await core.fetcher({
-      url: urlJoin(this.options.environment ?? environments.Environment.Production, "/plant/"),
+      url: urlJoin(this.options.environment ?? environments.PlantStoreApiEnvironment.Production, "/plant/"),
       method: "POST",
       headers: {
         Authorization: core.BearerToken.toAuthorizationHeader(await core.Supplier.get(this.options.token)),
@@ -45,20 +45,20 @@ export class Client {
         case 405:
           return {
             ok: false,
-            error: PlantstoreApi.plant.add.Error.invalidResponseError(),
+            error: PlantStoreApi.plant.add.Error.invalidResponseError(),
           };
       }
     }
 
     return {
       ok: false,
-      error: PlantstoreApi.plant.add.Error._unknown(_response.error),
+      error: PlantStoreApi.plant.add.Error._unknown(_response.error),
     };
   }
 
-  public async find(plantId: PlantstoreApi.PlantId): Promise<PlantstoreApi.plant.find.Response> {
+  public async find(plantId: PlantStoreApi.PlantId): Promise<PlantStoreApi.plant.find.Response> {
     const _response = await core.fetcher({
-      url: urlJoin(this.options.environment ?? environments.Environment.Production, `/plant/${plantId}`),
+      url: urlJoin(this.options.environment ?? environments.PlantStoreApiEnvironment.Production, `/plant/${plantId}`),
       method: "GET",
       headers: {
         Authorization: core.BearerToken.toAuthorizationHeader(await core.Supplier.get(this.options.token)),
@@ -76,25 +76,25 @@ export class Client {
         case 404:
           return {
             ok: false,
-            error: PlantstoreApi.plant.find.Error.plantNotFoundError(),
+            error: PlantStoreApi.plant.find.Error.plantNotFoundError(),
           };
         case 400:
           return {
             ok: false,
-            error: PlantstoreApi.plant.find.Error.invalidIdSuppliedError(),
+            error: PlantStoreApi.plant.find.Error.invalidIdSuppliedError(),
           };
       }
     }
 
     return {
       ok: false,
-      error: PlantstoreApi.plant.find.Error._unknown(_response.error),
+      error: PlantStoreApi.plant.find.Error._unknown(_response.error),
     };
   }
 
-  public async delete(plantId: PlantstoreApi.PlantId): Promise<PlantstoreApi.plant.delete.Response> {
+  public async delete(plantId: PlantStoreApi.PlantId): Promise<PlantStoreApi.plant.delete.Response> {
     const _response = await core.fetcher({
-      url: urlJoin(this.options.environment ?? environments.Environment.Production, `/plant/${plantId}`),
+      url: urlJoin(this.options.environment ?? environments.PlantStoreApiEnvironment.Production, `/plant/${plantId}`),
       method: "DELETE",
       headers: {
         Authorization: core.BearerToken.toAuthorizationHeader(await core.Supplier.get(this.options.token)),
@@ -112,19 +112,19 @@ export class Client {
         case 404:
           return {
             ok: false,
-            error: PlantstoreApi.plant.delete.Error.plantNotFoundError(),
+            error: PlantStoreApi.plant.delete.Error.plantNotFoundError(),
           };
         case 400:
           return {
             ok: false,
-            error: PlantstoreApi.plant.delete.Error.invalidIdSuppliedError(),
+            error: PlantStoreApi.plant.delete.Error.invalidIdSuppliedError(),
           };
       }
     }
 
     return {
       ok: false,
-      error: PlantstoreApi.plant.delete.Error._unknown(_response.error),
+      error: PlantStoreApi.plant.delete.Error._unknown(_response.error),
     };
   }
 }

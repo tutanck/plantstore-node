@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../..";
-import { PlantstoreApi } from "@fern-api/plantstore";
+import { PlantStoreApi } from "@fern-api/plantstore";
 import * as core from "../../../core";
 
-export const OwnerAge: core.schemas.Schema<serializers.OwnerAge.Raw, PlantstoreApi.OwnerAge> = core.schemas.enum_([
+export const OwnerAge: core.schemas.Schema<serializers.OwnerAge.Raw, PlantStoreApi.OwnerAge> = core.schemas.enum_([
   "child",
   "adult",
   "senior",

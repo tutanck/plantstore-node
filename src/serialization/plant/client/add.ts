@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../..";
-import { PlantstoreApi } from "@fern-api/plantstore";
+import { PlantStoreApi } from "@fern-api/plantstore";
 import * as core from "../../../core";
 
-export const Request: core.schemas.Schema<serializers.plant.add.Request.Raw, PlantstoreApi.AddPlantRequest> =
+export const Request: core.schemas.Schema<serializers.plant.add.Request.Raw, PlantStoreApi.AddPlantRequest> =
   core.schemas.object({
     id: core.schemas.lazy(async () => (await import("../..")).PlantId).optional(),
     category: core.schemas.lazyObject(async () => (await import("../..")).PlantCategory).optional(),

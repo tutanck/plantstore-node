@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../..";
-import { PlantstoreApi } from "@fern-api/plantstore";
+import { PlantStoreApi } from "@fern-api/plantstore";
 import * as core from "../../../core";
 
-export const CategoryId: core.schemas.Schema<serializers.CategoryId.Raw, PlantstoreApi.CategoryId> =
+export const CategoryId: core.schemas.Schema<serializers.CategoryId.Raw, PlantStoreApi.CategoryId> =
   core.schemas.string();
 
 export declare namespace CategoryId {

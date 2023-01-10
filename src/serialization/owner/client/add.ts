@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../..";
-import { PlantstoreApi } from "@fern-api/plantstore";
+import { PlantStoreApi } from "@fern-api/plantstore";
 import * as core from "../../../core";
 
-export const Request: core.schemas.Schema<serializers.owner.add.Request.Raw, PlantstoreApi.AddOwnerRequest> =
+export const Request: core.schemas.Schema<serializers.owner.add.Request.Raw, PlantStoreApi.AddOwnerRequest> =
   core.schemas.object({
     name: core.schemas.string(),
     age: core.schemas.lazy(async () => (await import("../..")).OwnerAge),
@@ -21,7 +21,7 @@ export declare namespace Request {
   }
 }
 
-export const Response: core.schemas.Schema<serializers.owner.add.Response.Raw, PlantstoreApi.PlantOwner> =
+export const Response: core.schemas.Schema<serializers.owner.add.Response.Raw, PlantStoreApi.PlantOwner> =
   core.schemas.lazy(async () => (await import("../..")).PlantOwner);
 
 export declare namespace Response {
