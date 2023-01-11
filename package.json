@@ -1,6 +1,6 @@
 {
     "name": "@fern-api/plantstore",
-    "version": "0.0.7",
+    "version": "0.0.11",
     "repository": "https://github.com/fern-api/plantstore-node",
     "files": [
         "dist",
