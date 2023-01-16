@@ -38,34 +38,40 @@ export declare namespace Error {
 
 export const Error = {
   plantNotFoundError: (): PlantStoreApi.plant.delete.Error.PlantNotFoundError => {
-    const valueWithoutVisit: Omit<PlantStoreApi.plant.delete.Error.PlantNotFoundError, "_visit"> = {
+    return {
       statusCode: 404,
+      _visit: function <_Result>(
+        this: PlantStoreApi.plant.delete.Error.PlantNotFoundError,
+        visitor: PlantStoreApi.plant.delete.Error._Visitor<_Result>
+      ) {
+        return PlantStoreApi.plant.delete.Error._visit(this, visitor);
+      },
     };
-    return core.addNonEnumerableProperty(valueWithoutVisit, "_visit", function <
-      _Result
-    >(this: PlantStoreApi.plant.delete.Error.PlantNotFoundError, visitor: PlantStoreApi.plant.delete.Error._Visitor<_Result>) {
-      return PlantStoreApi.plant.delete.Error._visit(this, visitor);
-    });
   },
 
   invalidIdSuppliedError: (): PlantStoreApi.plant.delete.Error.InvalidIdSuppliedError => {
-    const valueWithoutVisit: Omit<PlantStoreApi.plant.delete.Error.InvalidIdSuppliedError, "_visit"> = {
+    return {
       statusCode: 400,
+      _visit: function <_Result>(
+        this: PlantStoreApi.plant.delete.Error.InvalidIdSuppliedError,
+        visitor: PlantStoreApi.plant.delete.Error._Visitor<_Result>
+      ) {
+        return PlantStoreApi.plant.delete.Error._visit(this, visitor);
+      },
     };
-    return core.addNonEnumerableProperty(valueWithoutVisit, "_visit", function <
-      _Result
-    >(this: PlantStoreApi.plant.delete.Error.InvalidIdSuppliedError, visitor: PlantStoreApi.plant.delete.Error._Visitor<_Result>) {
-      return PlantStoreApi.plant.delete.Error._visit(this, visitor);
-    });
   },
 
   _unknown: (fetcherError: core.Fetcher.Error): PlantStoreApi.plant.delete.Error._Unknown => {
-    const valueWithoutVisit = fetcherError as unknown as Omit<PlantStoreApi.plant.delete.Error._Unknown, "_visit">;
-    return core.addNonEnumerableProperty(valueWithoutVisit, "_visit", function <
-      _Result
-    >(this: PlantStoreApi.plant.delete.Error._Unknown, visitor: PlantStoreApi.plant.delete.Error._Visitor<_Result>) {
-      return PlantStoreApi.plant.delete.Error._visit(this, visitor);
-    });
+    return {
+      statusCode: undefined,
+      content: fetcherError,
+      _visit: function <_Result>(
+        this: PlantStoreApi.plant.delete.Error._Unknown,
+        visitor: PlantStoreApi.plant.delete.Error._Visitor<_Result>
+      ) {
+        return PlantStoreApi.plant.delete.Error._visit(this, visitor);
+      },
+    };
   },
 
   _visit: <_Result>(

@@ -30,23 +30,28 @@ export declare namespace Error {
 
 export const Error = {
   invalidResponseError: (): PlantStoreApi.plant.add.Error.InvalidResponseError => {
-    const valueWithoutVisit: Omit<PlantStoreApi.plant.add.Error.InvalidResponseError, "_visit"> = {
+    return {
       statusCode: 405,
+      _visit: function <_Result>(
+        this: PlantStoreApi.plant.add.Error.InvalidResponseError,
+        visitor: PlantStoreApi.plant.add.Error._Visitor<_Result>
+      ) {
+        return PlantStoreApi.plant.add.Error._visit(this, visitor);
+      },
     };
-    return core.addNonEnumerableProperty(valueWithoutVisit, "_visit", function <
-      _Result
-    >(this: PlantStoreApi.plant.add.Error.InvalidResponseError, visitor: PlantStoreApi.plant.add.Error._Visitor<_Result>) {
-      return PlantStoreApi.plant.add.Error._visit(this, visitor);
-    });
   },
 
   _unknown: (fetcherError: core.Fetcher.Error): PlantStoreApi.plant.add.Error._Unknown => {
-    const valueWithoutVisit = fetcherError as unknown as Omit<PlantStoreApi.plant.add.Error._Unknown, "_visit">;
-    return core.addNonEnumerableProperty(valueWithoutVisit, "_visit", function <
-      _Result
-    >(this: PlantStoreApi.plant.add.Error._Unknown, visitor: PlantStoreApi.plant.add.Error._Visitor<_Result>) {
-      return PlantStoreApi.plant.add.Error._visit(this, visitor);
-    });
+    return {
+      statusCode: undefined,
+      content: fetcherError,
+      _visit: function <_Result>(
+        this: PlantStoreApi.plant.add.Error._Unknown,
+        visitor: PlantStoreApi.plant.add.Error._Visitor<_Result>
+      ) {
+        return PlantStoreApi.plant.add.Error._visit(this, visitor);
+      },
+    };
   },
 
   _visit: <_Result>(

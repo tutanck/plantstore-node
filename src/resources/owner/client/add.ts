@@ -30,23 +30,28 @@ export declare namespace Error {
 
 export const Error = {
   ownerNotFoundError: (): PlantStoreApi.owner.add.Error.OwnerNotFoundError => {
-    const valueWithoutVisit: Omit<PlantStoreApi.owner.add.Error.OwnerNotFoundError, "_visit"> = {
+    return {
       statusCode: 400,
+      _visit: function <_Result>(
+        this: PlantStoreApi.owner.add.Error.OwnerNotFoundError,
+        visitor: PlantStoreApi.owner.add.Error._Visitor<_Result>
+      ) {
+        return PlantStoreApi.owner.add.Error._visit(this, visitor);
+      },
     };
-    return core.addNonEnumerableProperty(valueWithoutVisit, "_visit", function <
-      _Result
-    >(this: PlantStoreApi.owner.add.Error.OwnerNotFoundError, visitor: PlantStoreApi.owner.add.Error._Visitor<_Result>) {
-      return PlantStoreApi.owner.add.Error._visit(this, visitor);
-    });
   },
 
   _unknown: (fetcherError: core.Fetcher.Error): PlantStoreApi.owner.add.Error._Unknown => {
-    const valueWithoutVisit = fetcherError as unknown as Omit<PlantStoreApi.owner.add.Error._Unknown, "_visit">;
-    return core.addNonEnumerableProperty(valueWithoutVisit, "_visit", function <
-      _Result
-    >(this: PlantStoreApi.owner.add.Error._Unknown, visitor: PlantStoreApi.owner.add.Error._Visitor<_Result>) {
-      return PlantStoreApi.owner.add.Error._visit(this, visitor);
-    });
+    return {
+      statusCode: undefined,
+      content: fetcherError,
+      _visit: function <_Result>(
+        this: PlantStoreApi.owner.add.Error._Unknown,
+        visitor: PlantStoreApi.owner.add.Error._Visitor<_Result>
+      ) {
+        return PlantStoreApi.owner.add.Error._visit(this, visitor);
+      },
+    };
   },
 
   _visit: <_Result>(

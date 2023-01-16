@@ -25,12 +25,16 @@ export declare namespace Error {
 
 export const Error = {
   _unknown: (fetcherError: core.Fetcher.Error): PlantStoreApi.owner.delete.Error._Unknown => {
-    const valueWithoutVisit = fetcherError as unknown as Omit<PlantStoreApi.owner.delete.Error._Unknown, "_visit">;
-    return core.addNonEnumerableProperty(valueWithoutVisit, "_visit", function <
-      _Result
-    >(this: PlantStoreApi.owner.delete.Error._Unknown, visitor: PlantStoreApi.owner.delete.Error._Visitor<_Result>) {
-      return PlantStoreApi.owner.delete.Error._visit(this, visitor);
-    });
+    return {
+      statusCode: undefined,
+      content: fetcherError,
+      _visit: function <_Result>(
+        this: PlantStoreApi.owner.delete.Error._Unknown,
+        visitor: PlantStoreApi.owner.delete.Error._Visitor<_Result>
+      ) {
+        return PlantStoreApi.owner.delete.Error._visit(this, visitor);
+      },
+    };
   },
 
   _visit: <_Result>(

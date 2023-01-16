@@ -3,7 +3,6 @@
  */
 
 import { PlantStoreApi } from "@fern-api/plantstore";
-import * as core from "../../../core";
 
 export type PlantOwner =
   | PlantStoreApi.PlantOwner.Customer
@@ -36,36 +35,41 @@ export declare namespace PlantOwner {
 
 export const PlantOwner = {
   customer: (value: PlantStoreApi.StoreCustomer): PlantStoreApi.PlantOwner.Customer => {
-    const valueWithoutVisit: Omit<PlantStoreApi.PlantOwner.Customer, "_visit"> = {
+    return {
       ...value,
       type: "customer",
+      _visit: function <_Result>(
+        this: PlantStoreApi.PlantOwner.Customer,
+        visitor: PlantStoreApi.PlantOwner._Visitor<_Result>
+      ) {
+        return PlantStoreApi.PlantOwner._visit(this, visitor);
+      },
     };
-    return core.addNonEnumerableProperty(valueWithoutVisit, "_visit", function <
-      _Result
-    >(this: PlantStoreApi.PlantOwner.Customer, visitor: PlantStoreApi.PlantOwner._Visitor<_Result>) {
-      return PlantStoreApi.PlantOwner._visit(this, visitor);
-    });
   },
 
   employee: (value: PlantStoreApi.StoreEmployee): PlantStoreApi.PlantOwner.Employee => {
-    const valueWithoutVisit: Omit<PlantStoreApi.PlantOwner.Employee, "_visit"> = {
+    return {
       ...value,
       type: "employee",
+      _visit: function <_Result>(
+        this: PlantStoreApi.PlantOwner.Employee,
+        visitor: PlantStoreApi.PlantOwner._Visitor<_Result>
+      ) {
+        return PlantStoreApi.PlantOwner._visit(this, visitor);
+      },
     };
-    return core.addNonEnumerableProperty(valueWithoutVisit, "_visit", function <
-      _Result
-    >(this: PlantStoreApi.PlantOwner.Employee, visitor: PlantStoreApi.PlantOwner._Visitor<_Result>) {
-      return PlantStoreApi.PlantOwner._visit(this, visitor);
-    });
   },
 
   _unknown: (value: { type: string }): PlantStoreApi.PlantOwner._Unknown => {
-    const valueWithoutVisit = value as unknown as Omit<PlantStoreApi.PlantOwner._Unknown, "_visit">;
-    return core.addNonEnumerableProperty(valueWithoutVisit, "_visit", function <
-      _Result
-    >(this: PlantStoreApi.PlantOwner._Unknown, visitor: PlantStoreApi.PlantOwner._Visitor<_Result>) {
-      return PlantStoreApi.PlantOwner._visit(this, visitor);
-    });
+    return {
+      ...(value as any),
+      _visit: function <_Result>(
+        this: PlantStoreApi.PlantOwner._Unknown,
+        visitor: PlantStoreApi.PlantOwner._Visitor<_Result>
+      ) {
+        return PlantStoreApi.PlantOwner._visit(this, visitor);
+      },
+    };
   },
 
   _visit: <_Result>(value: PlantStoreApi.PlantOwner, visitor: PlantStoreApi.PlantOwner._Visitor<_Result>): _Result => {
