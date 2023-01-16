@@ -6,7 +6,7 @@ The Plant Store API Node.js library provides access to the Plant Store API from 
 
 ## Usage
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/typescript-example-using-sdk-built-with-fern-dnjt7d?file=app.ts&view=editor)
+[![Try it out](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/typescript-example-using-sdk-built-with-fern-dnjt7d?file=app.ts&view=editor)
 
 ```typescript
 import {
