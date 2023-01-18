@@ -24,3 +24,25 @@ export declare namespace Request {
     status?: serializers.PlantStatus.Raw | null;
   }
 }
+
+export const Error: core.schemas.Schema<serializers.plant.add.Error.Raw, PlantStoreApi.plant.add.Error> = core.schemas
+  .union("error", {
+    InvalidResponseError: core.schemas.object({}),
+  })
+  .transform<PlantStoreApi.plant.add.Error>({
+    parse: (value) => {
+      switch (value.error) {
+        case "InvalidResponseError":
+          return PlantStoreApi.plant.add.Error.invalidResponseError();
+      }
+    },
+    json: (value) => value as any,
+  });
+
+export declare namespace Error {
+  type Raw = Error.InvalidResponseError;
+
+  interface InvalidResponseError {
+    error: "InvalidResponseError";
+  }
+}

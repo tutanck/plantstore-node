@@ -10,11 +10,11 @@ export type Error = PlantStoreApi.plant.add.Error.InvalidResponseError | PlantSt
 
 export declare namespace Error {
   interface InvalidResponseError extends _Utils {
-    statusCode: 405;
+    error: "InvalidResponseError";
   }
 
   interface _Unknown extends _Utils {
-    statusCode: void;
+    error: void;
     content: core.Fetcher.Error;
   }
 
@@ -31,7 +31,7 @@ export declare namespace Error {
 export const Error = {
   invalidResponseError: (): PlantStoreApi.plant.add.Error.InvalidResponseError => {
     return {
-      statusCode: 405,
+      error: "InvalidResponseError",
       _visit: function <_Result>(
         this: PlantStoreApi.plant.add.Error.InvalidResponseError,
         visitor: PlantStoreApi.plant.add.Error._Visitor<_Result>
@@ -43,7 +43,7 @@ export const Error = {
 
   _unknown: (fetcherError: core.Fetcher.Error): PlantStoreApi.plant.add.Error._Unknown => {
     return {
-      statusCode: undefined,
+      error: undefined,
       content: fetcherError,
       _visit: function <_Result>(
         this: PlantStoreApi.plant.add.Error._Unknown,
@@ -58,8 +58,8 @@ export const Error = {
     value: PlantStoreApi.plant.add.Error,
     visitor: PlantStoreApi.plant.add.Error._Visitor<_Result>
   ): _Result => {
-    switch (value.statusCode) {
-      case 405:
+    switch (value.error) {
+      case "InvalidResponseError":
         return visitor.invalidResponseError();
       default:
         return visitor._other(value as any);

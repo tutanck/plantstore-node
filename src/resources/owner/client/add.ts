@@ -10,11 +10,11 @@ export type Error = PlantStoreApi.owner.add.Error.OwnerNotFoundError | PlantStor
 
 export declare namespace Error {
   interface OwnerNotFoundError extends _Utils {
-    statusCode: 400;
+    error: "OwnerNotFoundError";
   }
 
   interface _Unknown extends _Utils {
-    statusCode: void;
+    error: void;
     content: core.Fetcher.Error;
   }
 
@@ -31,7 +31,7 @@ export declare namespace Error {
 export const Error = {
   ownerNotFoundError: (): PlantStoreApi.owner.add.Error.OwnerNotFoundError => {
     return {
-      statusCode: 400,
+      error: "OwnerNotFoundError",
       _visit: function <_Result>(
         this: PlantStoreApi.owner.add.Error.OwnerNotFoundError,
         visitor: PlantStoreApi.owner.add.Error._Visitor<_Result>
@@ -43,7 +43,7 @@ export const Error = {
 
   _unknown: (fetcherError: core.Fetcher.Error): PlantStoreApi.owner.add.Error._Unknown => {
     return {
-      statusCode: undefined,
+      error: undefined,
       content: fetcherError,
       _visit: function <_Result>(
         this: PlantStoreApi.owner.add.Error._Unknown,
@@ -58,8 +58,8 @@ export const Error = {
     value: PlantStoreApi.owner.add.Error,
     visitor: PlantStoreApi.owner.add.Error._Visitor<_Result>
   ): _Result => {
-    switch (value.statusCode) {
-      case 400:
+    switch (value.error) {
+      case "OwnerNotFoundError":
         return visitor.ownerNotFoundError();
       default:
         return visitor._other(value as any);

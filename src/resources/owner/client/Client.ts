@@ -39,11 +39,11 @@ export class Client {
     }
 
     if (_response.error.reason === "status-code") {
-      switch (_response.error.statusCode) {
-        case 400:
+      switch ((_response.error.body as serializers.owner.add.Error.Raw)?.error) {
+        case "OwnerNotFoundError":
           return {
             ok: false,
-            error: PlantStoreApi.owner.add.Error.ownerNotFoundError(),
+            error: await serializers.owner.add.Error.parse(_response.error.body as serializers.owner.add.Error.Raw),
           };
       }
     }
@@ -57,7 +57,7 @@ export class Client {
   public async delete(ownerId: PlantStoreApi.OwnerId): Promise<PlantStoreApi.owner.delete.Response> {
     const _response = await core.fetcher({
       url: urlJoin(this.options.environment ?? environments.PlantStoreApiEnvironment.Production, `/owner/${ownerId}`),
-      method: "POST",
+      method: "DELETE",
       headers: {
         Authorization: core.BearerToken.toAuthorizationHeader(await core.Supplier.get(this.options.token)),
       },

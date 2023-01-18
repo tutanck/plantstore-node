@@ -27,3 +27,25 @@ export const Response: core.schemas.Schema<serializers.owner.add.Response.Raw, P
 export declare namespace Response {
   type Raw = serializers.PlantOwner.Raw;
 }
+
+export const Error: core.schemas.Schema<serializers.owner.add.Error.Raw, PlantStoreApi.owner.add.Error> = core.schemas
+  .union("error", {
+    OwnerNotFoundError: core.schemas.object({}),
+  })
+  .transform<PlantStoreApi.owner.add.Error>({
+    parse: (value) => {
+      switch (value.error) {
+        case "OwnerNotFoundError":
+          return PlantStoreApi.owner.add.Error.ownerNotFoundError();
+      }
+    },
+    json: (value) => value as any,
+  });
+
+export declare namespace Error {
+  type Raw = Error.OwnerNotFoundError;
+
+  interface OwnerNotFoundError {
+    error: "OwnerNotFoundError";
+  }
+}

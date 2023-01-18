@@ -41,11 +41,11 @@ export class Client {
     }
 
     if (_response.error.reason === "status-code") {
-      switch (_response.error.statusCode) {
-        case 405:
+      switch ((_response.error.body as serializers.plant.add.Error.Raw)?.error) {
+        case "InvalidResponseError":
           return {
             ok: false,
-            error: PlantStoreApi.plant.add.Error.invalidResponseError(),
+            error: await serializers.plant.add.Error.parse(_response.error.body as serializers.plant.add.Error.Raw),
           };
       }
     }
@@ -72,16 +72,12 @@ export class Client {
     }
 
     if (_response.error.reason === "status-code") {
-      switch (_response.error.statusCode) {
-        case 404:
+      switch ((_response.error.body as serializers.plant.find.Error.Raw)?.error) {
+        case "PlantNotFoundError":
+        case "InvalidIdSuppliedError":
           return {
             ok: false,
-            error: PlantStoreApi.plant.find.Error.plantNotFoundError(),
-          };
-        case 400:
-          return {
-            ok: false,
-            error: PlantStoreApi.plant.find.Error.invalidIdSuppliedError(),
+            error: await serializers.plant.find.Error.parse(_response.error.body as serializers.plant.find.Error.Raw),
           };
       }
     }
@@ -108,16 +104,14 @@ export class Client {
     }
 
     if (_response.error.reason === "status-code") {
-      switch (_response.error.statusCode) {
-        case 404:
+      switch ((_response.error.body as serializers.plant.delete.Error.Raw)?.error) {
+        case "PlantNotFoundError":
+        case "InvalidIdSuppliedError":
           return {
             ok: false,
-            error: PlantStoreApi.plant.delete.Error.plantNotFoundError(),
-          };
-        case 400:
-          return {
-            ok: false,
-            error: PlantStoreApi.plant.delete.Error.invalidIdSuppliedError(),
+            error: await serializers.plant.delete.Error.parse(
+              _response.error.body as serializers.plant.delete.Error.Raw
+            ),
           };
       }
     }

@@ -13,15 +13,15 @@ export type Error =
 
 export declare namespace Error {
   interface PlantNotFoundError extends _Utils {
-    statusCode: 404;
+    error: "PlantNotFoundError";
   }
 
   interface InvalidIdSuppliedError extends _Utils {
-    statusCode: 400;
+    error: "InvalidIdSuppliedError";
   }
 
   interface _Unknown extends _Utils {
-    statusCode: void;
+    error: void;
     content: core.Fetcher.Error;
   }
 
@@ -39,7 +39,7 @@ export declare namespace Error {
 export const Error = {
   plantNotFoundError: (): PlantStoreApi.plant.find.Error.PlantNotFoundError => {
     return {
-      statusCode: 404,
+      error: "PlantNotFoundError",
       _visit: function <_Result>(
         this: PlantStoreApi.plant.find.Error.PlantNotFoundError,
         visitor: PlantStoreApi.plant.find.Error._Visitor<_Result>
@@ -51,7 +51,7 @@ export const Error = {
 
   invalidIdSuppliedError: (): PlantStoreApi.plant.find.Error.InvalidIdSuppliedError => {
     return {
-      statusCode: 400,
+      error: "InvalidIdSuppliedError",
       _visit: function <_Result>(
         this: PlantStoreApi.plant.find.Error.InvalidIdSuppliedError,
         visitor: PlantStoreApi.plant.find.Error._Visitor<_Result>
@@ -63,7 +63,7 @@ export const Error = {
 
   _unknown: (fetcherError: core.Fetcher.Error): PlantStoreApi.plant.find.Error._Unknown => {
     return {
-      statusCode: undefined,
+      error: undefined,
       content: fetcherError,
       _visit: function <_Result>(
         this: PlantStoreApi.plant.find.Error._Unknown,
@@ -78,10 +78,10 @@ export const Error = {
     value: PlantStoreApi.plant.find.Error,
     visitor: PlantStoreApi.plant.find.Error._Visitor<_Result>
   ): _Result => {
-    switch (value.statusCode) {
-      case 404:
+    switch (value.error) {
+      case "PlantNotFoundError":
         return visitor.plantNotFoundError();
-      case 400:
+      case "InvalidIdSuppliedError":
         return visitor.invalidIdSuppliedError();
       default:
         return visitor._other(value as any);

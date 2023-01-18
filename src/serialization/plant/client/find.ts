@@ -12,3 +12,32 @@ export const Response: core.schemas.Schema<serializers.plant.find.Response.Raw, 
 export declare namespace Response {
   type Raw = serializers.Plant.Raw;
 }
+
+export const Error: core.schemas.Schema<serializers.plant.find.Error.Raw, PlantStoreApi.plant.find.Error> = core.schemas
+  .union("error", {
+    PlantNotFoundError: core.schemas.object({}),
+    InvalidIdSuppliedError: core.schemas.object({}),
+  })
+  .transform<PlantStoreApi.plant.find.Error>({
+    parse: (value) => {
+      switch (value.error) {
+        case "PlantNotFoundError":
+          return PlantStoreApi.plant.find.Error.plantNotFoundError();
+        case "InvalidIdSuppliedError":
+          return PlantStoreApi.plant.find.Error.invalidIdSuppliedError();
+      }
+    },
+    json: (value) => value as any,
+  });
+
+export declare namespace Error {
+  type Raw = Error.PlantNotFoundError | Error.InvalidIdSuppliedError;
+
+  interface PlantNotFoundError {
+    error: "PlantNotFoundError";
+  }
+
+  interface InvalidIdSuppliedError {
+    error: "InvalidIdSuppliedError";
+  }
+}

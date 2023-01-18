@@ -10,7 +10,7 @@ export type Error = PlantStoreApi.owner.delete.Error._Unknown;
 
 export declare namespace Error {
   interface _Unknown extends _Utils {
-    statusCode: void;
+    error: void;
     content: core.Fetcher.Error;
   }
 
@@ -26,7 +26,7 @@ export declare namespace Error {
 export const Error = {
   _unknown: (fetcherError: core.Fetcher.Error): PlantStoreApi.owner.delete.Error._Unknown => {
     return {
-      statusCode: undefined,
+      error: undefined,
       content: fetcherError,
       _visit: function <_Result>(
         this: PlantStoreApi.owner.delete.Error._Unknown,
@@ -41,7 +41,7 @@ export const Error = {
     value: PlantStoreApi.owner.delete.Error,
     visitor: PlantStoreApi.owner.delete.Error._Visitor<_Result>
   ): _Result => {
-    switch (value.statusCode) {
+    switch (value.error) {
       default:
         return visitor._other(value as any);
     }
