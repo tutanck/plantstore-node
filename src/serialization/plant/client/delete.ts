@@ -10,7 +10,9 @@ export const Error: core.schemas.Schema<serializers.plant.delete.Error.Raw, Plan
   core.schemas
     .union("error", {
       PlantNotFoundError: core.schemas.object({}),
-      InvalidIdSuppliedError: core.schemas.object({}),
+      InvalidIdSuppliedError: core.schemas.object({
+        content: core.schemas.lazy(async () => (await import("../..")).InvalidIdSuppliedError),
+      }),
     })
     .transform<PlantStoreApi.plant.delete.Error>({
       parse: (value) => {
@@ -18,7 +20,7 @@ export const Error: core.schemas.Schema<serializers.plant.delete.Error.Raw, Plan
           case "PlantNotFoundError":
             return PlantStoreApi.plant.delete.Error.plantNotFoundError();
           case "InvalidIdSuppliedError":
-            return PlantStoreApi.plant.delete.Error.invalidIdSuppliedError();
+            return PlantStoreApi.plant.delete.Error.invalidIdSuppliedError(value.content);
         }
       },
       json: (value) => value as any,
@@ -33,5 +35,6 @@ export declare namespace Error {
 
   interface InvalidIdSuppliedError {
     error: "InvalidIdSuppliedError";
+    content: serializers.InvalidIdSuppliedError.Raw;
   }
 }

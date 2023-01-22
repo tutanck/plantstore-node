@@ -16,7 +16,9 @@ export declare namespace Response {
 export const Error: core.schemas.Schema<serializers.plant.find.Error.Raw, PlantStoreApi.plant.find.Error> = core.schemas
   .union("error", {
     PlantNotFoundError: core.schemas.object({}),
-    InvalidIdSuppliedError: core.schemas.object({}),
+    InvalidIdSuppliedError: core.schemas.object({
+      content: core.schemas.lazy(async () => (await import("../..")).InvalidIdSuppliedError),
+    }),
   })
   .transform<PlantStoreApi.plant.find.Error>({
     parse: (value) => {
@@ -24,7 +26,7 @@ export const Error: core.schemas.Schema<serializers.plant.find.Error.Raw, PlantS
         case "PlantNotFoundError":
           return PlantStoreApi.plant.find.Error.plantNotFoundError();
         case "InvalidIdSuppliedError":
-          return PlantStoreApi.plant.find.Error.invalidIdSuppliedError();
+          return PlantStoreApi.plant.find.Error.invalidIdSuppliedError(value.content);
       }
     },
     json: (value) => value as any,
@@ -39,5 +41,6 @@ export declare namespace Error {
 
   interface InvalidIdSuppliedError {
     error: "InvalidIdSuppliedError";
+    content: serializers.InvalidIdSuppliedError.Raw;
   }
 }

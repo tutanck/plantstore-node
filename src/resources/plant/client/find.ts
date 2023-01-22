@@ -18,6 +18,7 @@ export declare namespace Error {
 
   interface InvalidIdSuppliedError extends _Utils {
     error: "InvalidIdSuppliedError";
+    content: PlantStoreApi.InvalidIdSuppliedError;
   }
 
   interface _Unknown extends _Utils {
@@ -31,7 +32,7 @@ export declare namespace Error {
 
   interface _Visitor<_Result> {
     plantNotFoundError: () => _Result;
-    invalidIdSuppliedError: () => _Result;
+    invalidIdSuppliedError: (value: PlantStoreApi.InvalidIdSuppliedError) => _Result;
     _other: (value: core.Fetcher.Error) => _Result;
   }
 }
@@ -49,8 +50,11 @@ export const Error = {
     };
   },
 
-  invalidIdSuppliedError: (): PlantStoreApi.plant.find.Error.InvalidIdSuppliedError => {
+  invalidIdSuppliedError: (
+    value: PlantStoreApi.InvalidIdSuppliedError
+  ): PlantStoreApi.plant.find.Error.InvalidIdSuppliedError => {
     return {
+      content: value,
       error: "InvalidIdSuppliedError",
       _visit: function <_Result>(
         this: PlantStoreApi.plant.find.Error.InvalidIdSuppliedError,
@@ -82,7 +86,7 @@ export const Error = {
       case "PlantNotFoundError":
         return visitor.plantNotFoundError();
       case "InvalidIdSuppliedError":
-        return visitor.invalidIdSuppliedError();
+        return visitor.invalidIdSuppliedError(value.content);
       default:
         return visitor._other(value as any);
     }
