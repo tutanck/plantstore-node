@@ -3,10 +3,10 @@
  */
 
 export const PlantStoreApiEnvironment = {
-  Production: "https://api.plantstore.com",
-  Sandbox: "https://sandbox.plantstore.com",
+    Production: "https://api.plantstore.com",
+    Sandbox: "https://sandbox.plantstore.com",
 } as const;
 
 export type PlantStoreApiEnvironment =
-  | typeof PlantStoreApiEnvironment.Production
-  | typeof PlantStoreApiEnvironment.Sandbox;
+    | typeof PlantStoreApiEnvironment.Production
+    | typeof PlantStoreApiEnvironment.Sandbox;

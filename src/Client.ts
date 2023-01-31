@@ -4,28 +4,28 @@
 
 import * as environments from "./environments";
 import * as core from "./core";
-import { Client as OwnerClient } from "./resources/owner/client/Client";
-import { Client as PlantClient } from "./resources/plant/client/Client";
+import { Client as OwnerClient } from "./api/resources/owner/client/Client";
+import { Client as PlantClient } from "./api/resources/plant/client/Client";
 
 export declare namespace PlantStoreApiClient {
-  interface Options {
-    environment?: environments.PlantStoreApiEnvironment | string;
-    token?: core.Supplier<core.BearerToken>;
-  }
+    interface Options {
+        environment?: environments.PlantStoreApiEnvironment | string;
+        token?: core.Supplier<core.BearerToken>;
+    }
 }
 
 export class PlantStoreApiClient {
-  constructor(private readonly options: PlantStoreApiClient.Options) {}
+    constructor(private readonly options: PlantStoreApiClient.Options) {}
 
-  #owner: OwnerClient | undefined;
+    #owner: OwnerClient | undefined;
 
-  public get owner(): OwnerClient {
-    return (this.#owner ??= new OwnerClient(this.options));
-  }
+    public get owner(): OwnerClient {
+        return (this.#owner ??= new OwnerClient(this.options));
+    }
 
-  #plant: PlantClient | undefined;
+    #plant: PlantClient | undefined;
 
-  public get plant(): PlantClient {
-    return (this.#plant ??= new PlantClient(this.options));
-  }
+    public get plant(): PlantClient {
+        return (this.#plant ??= new PlantClient(this.options));
+    }
 }
