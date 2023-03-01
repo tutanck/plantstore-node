@@ -23,16 +23,9 @@ async function main() {
     token: 'MY-TOKEN',
   });
 
-  const response = await client.plant.find(
-    'ef19fe7b-c4c9-4631-81d7-a83aba610a7d'
-  );
+  const plant = await client.plant.find('ef19fe7b-c4c9-4631-81d7-a83aba610a7d');
 
-  if (response.ok) {
-    const plant: PlantStoreApi.Plant = response.body;
-    console.log('Received plant!', plant);
-  } else {
-    console.log('Received failed response from Plant Store!', response.error);
-  }
+  console.log('Received plant!', plant);
 }
 ```
 
