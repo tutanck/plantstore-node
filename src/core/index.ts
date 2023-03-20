@@ -1,3 +1,3 @@
-export * as serialization from "./schemas";
-export * from "./auth";
+export * as schemas from "./schemas";
 export * from "./fetcher";
+export * from "./utils";

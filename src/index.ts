@@ -1,4 +1,2 @@
-export * as PlantStoreApi from "./api";
-export { PlantStoreApiClient } from "./Client";
-export { PlantStoreApiEnvironment } from "./environments";
-export { PlantStoreApiError, PlantStoreApiTimeoutError } from "./errors";
+export * as GautamBoseSwantide from "./resources";
+export { GautamBoseSwantideClient } from "./Client";
