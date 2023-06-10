@@ -163,10 +163,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@fern-api/plantstore@workspace:."
   dependencies:
+    "@types/basic-auth": ^1.1.3
     "@types/node": 17.0.33
     "@types/url-join": 4.0.1
     axios: ^0.27.2
+    basic-auth: ^2.0.1
+    buffer: ^6.0.3
     esbuild: 0.16.15
+    js-base64: ^3.7.2
     prettier: 2.7.1
     tsc-alias: ^1.7.1
     typescript: 4.6.4
@@ -232,6 +236,22 @@ __metadata:
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
   checksum: ad87447820dd3f24825d2d947ebc03072b20a42bfc96cbafec16bff8bbda6c1a81fcb0be56d5b21968560c5359a0af4038a68ba150c3e1694fe4c109a063bed8
+  languageName: node
+  linkType: hard
+
+"@types/basic-auth@npm:^1.1.3":
+  version: 1.1.3
+  resolution: "@types/basic-auth@npm:1.1.3"
+  dependencies:
+    "@types/node": "*"
+  checksum: 9fe87b9dabdfffaf883489ad69f95d91fffc5922bb7b6f8b8f3605a6a5e63377d80c5eac5c1b6a61a59689ad4fdb7d5e73b9d26255cac6aee91147809740037f
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:*":
+  version: 20.3.0
+  resolution: "@types/node@npm:20.3.0"
+  checksum: 613e878174febc0104dae210088645cbb5096a19ae5fdf57fbc06fa6ef71755b839858c2b313fb8c1df8b7c6660e1b5f7a64db2126af9d47d1d9238e2bc0a86d
   languageName: node
   linkType: hard
 
@@ -351,6 +371,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"base64-js@npm:^1.3.1":
+  version: 1.5.1
+  resolution: "base64-js@npm:1.5.1"
+  checksum: 669632eb3745404c2f822a18fc3a0122d2f9a7a13f7fb8b5823ee19d1d2ff9ee5b52c53367176ea4ad093c332fd5ab4bd0ebae5a8e27917a4105a4cfc86b1005
+  languageName: node
+  linkType: hard
+
+"basic-auth@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "basic-auth@npm:2.0.1"
+  dependencies:
+    safe-buffer: 5.1.2
+  checksum: 3419b805d5dfc518f3a05dcf42aa53aa9ce820e50b6df5097f9e186322e1bc733c36722b624802cd37e791035aa73b828ed814d8362333d42d7f5cd04d7a5e48
+  languageName: node
+  linkType: hard
+
 "binary-extensions@npm:^2.0.0":
   version: 2.2.0
   resolution: "binary-extensions@npm:2.2.0"
@@ -383,6 +419,16 @@ __metadata:
   dependencies:
     fill-range: ^7.0.1
   checksum: e2a8e769a863f3d4ee887b5fe21f63193a891c68b612ddb4b68d82d1b5f3ff9073af066c343e9867a393fe4c2555dcb33e89b937195feb9c1613d259edfcd459
+  languageName: node
+  linkType: hard
+
+"buffer@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "buffer@npm:6.0.3"
+  dependencies:
+    base64-js: ^1.3.1
+    ieee754: ^1.2.1
+  checksum: 5ad23293d9a731e4318e420025800b42bf0d264004c0286c8cc010af7a270c7a0f6522e84f54b9ad65cbd6db20b8badbfd8d2ebf4f80fa03dab093b89e68c3f9
   languageName: node
   linkType: hard
 
@@ -846,6 +892,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ieee754@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "ieee754@npm:1.2.1"
+  checksum: 5144c0c9815e54ada181d80a0b810221a253562422e7c6c3a60b1901154184f49326ec239d618c416c1c5945a2e197107aee8d986a3dd836b53dffefd99b5e7e
+  languageName: node
+  linkType: hard
+
 "ignore@npm:^5.2.0":
   version: 5.2.4
   resolution: "ignore@npm:5.2.4"
@@ -948,6 +1001,13 @@ __metadata:
   version: 2.0.0
   resolution: "isexe@npm:2.0.0"
   checksum: 26bf6c5480dda5161c820c5b5c751ae1e766c587b1f951ea3fcfc973bafb7831ae5b54a31a69bd670220e42e99ec154475025a468eae58ea262f813fdc8d1c62
+  languageName: node
+  linkType: hard
+
+"js-base64@npm:^3.7.2":
+  version: 3.7.5
+  resolution: "js-base64@npm:3.7.5"
+  checksum: 67a78c8b1c47b73f1c6fba1957e9fe6fd9dc78ac93ac46cc2e43472dcb9cf150d126fb0e593192e88e0497354fa634d17d255add7cc6ee3c7b4d29870faa8e18
   languageName: node
   linkType: hard
 
@@ -1102,10 +1162,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minipass@npm:^4.0.0":
-  version: 4.2.5
-  resolution: "minipass@npm:4.2.5"
-  checksum: 4f9c19af23a5d4a9e7156feefc9110634b178a8cff8f8271af16ec5ebf7e221725a97429952c856f5b17b30c2065ebd24c81722d90c93d2122611d75b952b48f
+"minipass@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "minipass@npm:5.0.0"
+  checksum: 425dab288738853fded43da3314a0b5c035844d6f3097a8e3b5b29b328da8f3c1af6fc70618b32c29ff906284cf6406b6841376f21caaadd0793c1d5a6a620ea
   languageName: node
   linkType: hard
 
@@ -1348,6 +1408,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"safe-buffer@npm:5.1.2":
+  version: 5.1.2
+  resolution: "safe-buffer@npm:5.1.2"
+  checksum: f2f1f7943ca44a594893a852894055cf619c1fbcb611237fc39e461ae751187e7baf4dc391a72125e0ac4fb2d8c5c0b3c71529622e6a58f46b960211e704903c
+  languageName: node
+  linkType: hard
+
 "safe-buffer@npm:~5.2.0":
   version: 5.2.1
   resolution: "safe-buffer@npm:5.2.1"
@@ -1363,13 +1430,13 @@ __metadata:
   linkType: hard
 
 "semver@npm:^7.3.5":
-  version: 7.3.8
-  resolution: "semver@npm:7.3.8"
+  version: 7.5.1
+  resolution: "semver@npm:7.5.1"
   dependencies:
     lru-cache: ^6.0.0
   bin:
     semver: bin/semver.js
-  checksum: ba9c7cbbf2b7884696523450a61fee1a09930d888b7a8d7579025ad93d459b2d1949ee5bbfeb188b2be5f4ac163544c5e98491ad6152df34154feebc2cc337c1
+  checksum: d16dbedad53c65b086f79524b9ef766bf38670b2395bdad5c957f824dcc566b624988013564f4812bcace3f9d405355c3635e2007396a39d1bffc71cfec4a2fc
   languageName: node
   linkType: hard
 
@@ -1461,16 +1528,16 @@ __metadata:
   linkType: hard
 
 "tar@npm:^6.1.11, tar@npm:^6.1.2":
-  version: 6.1.13
-  resolution: "tar@npm:6.1.13"
+  version: 6.1.15
+  resolution: "tar@npm:6.1.15"
   dependencies:
     chownr: ^2.0.0
     fs-minipass: ^2.0.0
-    minipass: ^4.0.0
+    minipass: ^5.0.0
     minizlib: ^2.1.1
     mkdirp: ^1.0.3
     yallist: ^4.0.0
-  checksum: 8a278bed123aa9f53549b256a36b719e317c8b96fe86a63406f3c62887f78267cea9b22dc6f7007009738509800d4a4dccc444abd71d762287c90f35b002eb1c
+  checksum: f23832fceeba7578bf31907aac744ae21e74a66f4a17a9e94507acf460e48f6db598c7023882db33bab75b80e027c21f276d405e4a0322d58f51c7088d428268
   languageName: node
   linkType: hard
 
@@ -1484,8 +1551,8 @@ __metadata:
   linkType: hard
 
 "tsc-alias@npm:^1.7.1":
-  version: 1.8.3
-  resolution: "tsc-alias@npm:1.8.3"
+  version: 1.8.6
+  resolution: "tsc-alias@npm:1.8.6"
   dependencies:
     chokidar: ^3.5.3
     commander: ^9.0.0
@@ -1495,7 +1562,7 @@ __metadata:
     plimit-lit: ^1.2.6
   bin:
     tsc-alias: dist/bin/index.js
-  checksum: c91ac3f3a97286f6f53c1137b3f5d96b14460206886b4cd0810f89dafe81d7d59772c7e82b2622b513333683e527e977b3fa7130387bebe0926f3d640781c29a
+  checksum: e177c155e1501a1021cec8b201be582afabb3e2651b2e44883bf18efdce7f49fe0132497ab1df1d9f3bddd6e972db15d4de148b9514c6847e05f0ddd53896286
   languageName: node
   linkType: hard
 
